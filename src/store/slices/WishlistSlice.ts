@@ -4,7 +4,7 @@ const WishlistSlice = createSlice({
   initialState: [],
   reducers: {
     addToWishlist(state, action) {
-      // state.push(action.payload);s
+      // state.push(action.payload);
     },
     removeFromWishlist(state, action) {
       // const temp=state.filter()

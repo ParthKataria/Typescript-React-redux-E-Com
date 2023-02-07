@@ -9,10 +9,7 @@ const ItemsApi = createApi({
   }),
   endpoints(builder) {
     return {
-      fetchItems: builder.query<
-        { results: Item[] },
-        { categories: string; page: number }
-      >({
+      fetchItems: builder.query<Item[], { categories: string; page: number }>({
         query: ({ categories, page }) => {
           return {
             url: "/",
@@ -25,6 +22,18 @@ const ItemsApi = createApi({
             },
             headers: headers,
           };
+        },
+        transformResponse: (response: { results: Item[] }) => {
+          return response.results;
+        },
+        serializeQueryArgs: ({ endpointName }) => {
+          return endpointName;
+        },
+        merge: (currentCache, response) => {
+          return [...currentCache, ...response];
+        },
+        forceRefetch({ currentArg, previousArg }) {
+          return currentArg !== previousArg;
         },
       }),
     };

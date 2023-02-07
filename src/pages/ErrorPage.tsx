@@ -1,6 +1,5 @@
-import React from "react";
-
-const ErrorPage = ({ children }: { children: JSX.Element }) => {
+import React, { ReactNode } from "react";
+const ErrorPage = ({ children }: { children: ReactNode }) => {
   return <div>{children}</div>;
 };
 

@@ -44,4 +44,4 @@ export {
   modifyElement,
   removeElement,
 };
-export * from "./api/fetchItems";
+export type MyState = ReturnType<typeof store.getState>;

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserDetails } from "../../TypeDefinations/types";
+const initialState: UserDetails | null = null;
 const userSlice = createSlice({
   name: "user",
-  initialState: null,
+  initialState,
   reducers: {
     changeUser(state, action) {
-      // console.log(action.payload);
       return action.payload;
     },
   },

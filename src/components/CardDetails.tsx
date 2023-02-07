@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import Button from "./Button";
 import Skeleton from "./Skeleton";
 import ErrorPage from "../pages/ErrorPage";
-import { MyState } from "../TypeDefinations/types";
+import { Item, MyState } from "../TypeDefinations/types";
 const CardDetails = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: MyState) => state.user);
@@ -18,8 +18,8 @@ const CardDetails = () => {
     }
     dispatch(addToCart(ITEM));
   };
-  const { state: ITEM } = useLocation();
-  const { id } = useParams();
+  const ITEM: Item | undefined = useLocation().state;
+  const id: string = useParams().id!;
   const { data, isFetching, error } = useFetchItemDetailsQuery(id);
   if (!ITEM)
     return (
@@ -28,9 +28,8 @@ const CardDetails = () => {
       </ErrorPage>
     );
   const { images } = ITEM;
-  let content;
   if (isFetching) {
-    content = (
+    return (
       <Skeleton
         times={4}
         names={"mx-2 mt-5 bg-zinc-200 shadow p-2 h-64 mx-2 mt-5"}
@@ -39,17 +38,17 @@ const CardDetails = () => {
   } else {
     if (error) {
       console.log(error);
-      content = (
+      return (
         <ErrorPage>
           <div>jbbjh</div>
         </ErrorPage>
       );
     } else {
-      const { product } = data;
+      const { product } = data!;
       console.log(product);
       const { name, description, whitePrice } = product;
       console.log();
-      content = (
+      return (
         <div className="m-5 grid grid-cols-3 ">
           <div>
             <img className="h-[800px] w-full" src={images[0].url} />
@@ -67,6 +66,5 @@ const CardDetails = () => {
       );
     }
   }
-  return content;
 };
 export default CardDetails;

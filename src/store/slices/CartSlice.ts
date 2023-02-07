@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Item } from "../../TypeDefinations/types";
+const initialState: Item[] = [];
 const CartSlice = createSlice({
   name: "cart",
-  initialState: <Item[]>[],
+  initialState,
   reducers: {
     addToCart(state, action) {
       // Complete item

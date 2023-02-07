@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { headers } from "../../API_KEYS";
+import { ItemDetails } from "../../TypeDefinations/types";
 const ItemDetailsApi = createApi({
   reducerPath: "item-details",
   baseQuery: fetchBaseQuery({
@@ -8,7 +9,7 @@ const ItemDetailsApi = createApi({
   }),
   endpoints(builder) {
     return {
-      fetchItemDetails: builder.query({
+      fetchItemDetails: builder.query<ItemDetails, string>({
         query: (code) => {
           return {
             url: "/",
