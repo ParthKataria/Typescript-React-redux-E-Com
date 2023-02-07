@@ -1,6 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyCpd9fAwpgjdZ4AO_YYZAmQ3CEQdNQa1H8",
   authDomain: "crwn-clothing-bd414.firebaseapp.com",
@@ -19,3 +25,7 @@ provider.setCustomParameters({
 });
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithEmail = (email: string, password: string) =>
+  signInWithEmailAndPassword(auth, email, password);
+export const RegisterWithEmail = (email: string, password: string) =>
+  createUserWithEmailAndPassword(auth, email, password);

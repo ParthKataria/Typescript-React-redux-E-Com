@@ -23,7 +23,7 @@ const Profile = () => {
   const { user } = useSelector((state: MyState) => {
     return { user: state.user };
   });
-  const { displayName, photoURL } = user!;
+  const { email, photoURL } = user!;
   return (
     <>
       <div ref={divElement} className="ml-5 mt-1 relative">
@@ -33,11 +33,11 @@ const Profile = () => {
           </button>
         </div>
         {dropdown && (
-          <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+          <div className="origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg">
             <div className="py-1 rounded-md bg-white shadow-xs">
               <div className="grid text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
                 <img className="rounded-full m-auto" src={photoURL} />
-                <div className="m-auto text-lg">Signed In {displayName}</div>
+                <div className="m-auto text-lg">{email}</div>
                 <div className="m-auto"></div>
               </div>
             </div>

@@ -1,21 +1,18 @@
+import { RegisterWithEmail } from "../firebase/firebaseAuth";
 import Button from "./Button";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeUser } from "../store";
 import { UserDetails } from "../TypeDefinations/types";
 import { useNavigate } from "react-router-dom";
-import {
-  signInWithEmail,
-  signInWithGooglePopup,
-} from "../firebase/firebaseAuth";
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const handleEmailLogin = async () => {
+  const handleRegister = async () => {
     try {
-      const { user } = await signInWithEmail(email, password);
+      const { user } = await RegisterWithEmail(email, password);
       const loggedUser: UserDetails = {
         email: user.email!,
         photoURL: user.photoURL!,
@@ -25,19 +22,6 @@ const Login = () => {
     } catch (err) {
       alert(err);
       console.log(err);
-    }
-  };
-  const logUser = async () => {
-    try {
-      const { user } = await signInWithGooglePopup();
-      const loggedUser: UserDetails = {
-        email: user.email!,
-        photoURL: user.photoURL!,
-      };
-      dispatch(changeUser(loggedUser));
-      navigate("/");
-    } catch (err) {
-      alert(err);
     }
   };
   return (
@@ -61,11 +45,10 @@ const Login = () => {
         />
       </div>
       <div className="mt-5">
-        <Button onClick={handleEmailLogin}>LOGIN</Button>
-        <Button onClick={logUser}>LOGIN WITH GOOGLE</Button>
+        <Button onClick={handleRegister}>REGISTER</Button>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;

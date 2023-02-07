@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { changeUser } from "../store";
-import Login from "./Login";
 import Button from "./Button";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { MyState } from "../TypeDefinations/types";
@@ -51,7 +50,16 @@ const NavBar = () => {
                 </Link>
               </>
             )}
-            {!LoggedIn && <Login />}
+            {!LoggedIn && (
+              <Link className="md:text-xl md:my-0 my-7 mx-5" to="/login">
+                LOGIN
+              </Link>
+            )}
+            {!LoggedIn && (
+              <Link className="md:text-xl md:my-0 my-7 mx-5" to="/register">
+                REGISTER
+              </Link>
+            )}
             {LoggedIn && <Button onClick={handleLogout}>LOGOUT</Button>}
           </ul>
         </div>

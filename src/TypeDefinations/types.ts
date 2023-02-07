@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { MyState } from "../store";
 export interface UserDetails {
-  displayName: string;
+  email: string;
   photoURL: string;
 }
 export interface Item {
