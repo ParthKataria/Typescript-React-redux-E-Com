@@ -6,9 +6,7 @@ import Categories from "../pages/Categories";
 import CategoryElement from "../pages/CategoryElement";
 import ErrorPage from "../pages/ErrorPage";
 import CardDetails from "./CardDetails";
-import { useSelector } from "react-redux";
 const App = () => {
-  // useSelector((state) => console.log(state));
   return (
     <Routes>
       <Route path="/" element={<NavBar />}>

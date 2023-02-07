@@ -1,5 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { SliderData } from "../../TypeDefinations/types";
+interface Result {
+  total: number;
+  results: { urls: { raw: string } }[];
+}
 const SliderImages = createApi({
   reducerPath: "sliderImages",
   baseQuery: fetchBaseQuery({
@@ -17,6 +21,13 @@ const SliderImages = createApi({
             },
             params: { query: category },
           };
+        },
+        transformResponse(response: Result) {
+          const res = {
+            total: response.total,
+            results: response.results.map((item) => item.urls.raw),
+          };
+          return res;
         },
       }),
     };

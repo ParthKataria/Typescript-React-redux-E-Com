@@ -6,7 +6,6 @@ import Button from "./Button";
 import { UserDetails } from "../TypeDefinations/types";
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const logUser = async () => {
     try {
       const { user } = await signInWithGooglePopup();
@@ -15,9 +14,7 @@ const Login = () => {
         photoURL: user.photoURL!,
       };
       dispatch(changeUser(loggedUser));
-      navigate("/");
     } catch (err) {
-      navigate("/");
       alert(err);
     }
   };

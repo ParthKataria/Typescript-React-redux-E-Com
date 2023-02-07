@@ -8,13 +8,11 @@ import { MyState } from "../TypeDefinations/types";
 import Profile from "./Profile";
 const NavBar = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { user } = useSelector((state: MyState) => {
     return { user: state.user };
   });
   const handleLogout = () => {
     dispatch(changeUser(null));
-    navigate("/");
   };
   let LoggedIn = false;
   if (Boolean(user)) {

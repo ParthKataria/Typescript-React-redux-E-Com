@@ -5,11 +5,11 @@ export interface UserDetails {
   photoURL: string;
 }
 export interface Item {
-  images: { url: string }[];
-  price: { value: number };
-  quantity: number;
-  articles: { code: number }[];
+  url: string;
   code: number;
+  productCode: number;
+  quantity?: number;
+  price?: number;
 }
 export interface ButtonProps {
   children: ReactNode;
@@ -18,7 +18,7 @@ export interface ButtonProps {
 
 export interface SliderData {
   total: number;
-  results: { urls: { raw: string } }[];
+  results: string[];
 }
 export interface CardProps {
   url: string;
@@ -34,12 +34,8 @@ export interface Category {
   tagCodes: string[];
 }
 export interface ItemDetails {
-  product: {
-    name: string;
-    description: string;
-    whitePrice: {
-      price: number;
-    };
-  };
+  name: string;
+  description: string;
+  price: number;
 }
 export type { MyState };

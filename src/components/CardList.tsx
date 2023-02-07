@@ -9,7 +9,10 @@ import { addToCart } from "../store";
 import { MyState } from "../TypeDefinations/types";
 import { useState, useRef, useCallback } from "react";
 import { Item } from "../TypeDefinations/types";
-const CardList = ({ category }: { category: string }) => {
+interface CardListProps {
+  category: string;
+}
+const CardList = ({ category }: CardListProps) => {
   const [page, setCurrentPage] = useState(0);
   const { data, isFetching, error } = useFetchItemsQuery({
     categories: category,
@@ -27,7 +30,6 @@ const CardList = ({ category }: { category: string }) => {
           }
         });
       }
-      console.log(observer, node);
       if (node) observer.current.observe(node);
     },
     [isFetching]
@@ -60,12 +62,8 @@ const CardList = ({ category }: { category: string }) => {
         {data.map((item: Item, id) => {
           if (id === data.length - 1) {
             return (
-              <Card
-                key={item.code}
-                url={item.images[0].url}
-                innerRef={lastElement}
-              >
-                <Link to={`/product/${item.articles[0].code}`} state={item}>
+              <Card key={item.code} url={item.url} innerRef={lastElement}>
+                <Link to={`/product/${item.productCode}`} state={item}>
                   <Button>View Product</Button>
                 </Link>
 
@@ -76,8 +74,8 @@ const CardList = ({ category }: { category: string }) => {
             );
           }
           return (
-            <Card key={item.code} url={item.images[0].url}>
-              <Link to={`/product/${item.articles[0].code}`} state={item}>
+            <Card key={item.code} url={item.url}>
+              <Link to={`/product/${item.productCode}`} state={item}>
                 <Button>View Product</Button>
               </Link>
 

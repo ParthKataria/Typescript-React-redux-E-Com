@@ -34,7 +34,7 @@ const Slider = ({ category }: { category: string }) => {
         return (
           <div className="max-w-[1600px] h-[780px] w-full m-auto py-16 px-4 relative group">
             <div
-              style={{ backgroundImage: `url(${results[index].urls.raw})` }}
+              style={{ backgroundImage: `url(${results[index]})` }}
               className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
             ></div>
             <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
@@ -55,7 +55,7 @@ const Slider = ({ category }: { category: string }) => {
             </div>
 
             <div className="flex top-4 justify-center py-2">
-              {results.map((item, idx) => (
+              {results.map((_, idx) => (
                 <div
                   key={idx}
                   onClick={() => handleClick(idx)}

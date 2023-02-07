@@ -9,33 +9,32 @@ import { MyState } from "../TypeDefinations/types";
 const Cart = () => {
   const [cost, setCost] = useState(0);
   const dispatch = useDispatch();
-  const { cartList } = useSelector((state: MyState) => {
-    return {
-      cartList: state.cart,
-    };
+  const { user, cartList } = useSelector((state: MyState) => {
+    return { user: state.user, cartList: state.cart };
   });
+
   useEffect(() => {
     const temp = cartList.reduce((acc, item) => {
-      return acc + item.quantity * item.price.value;
+      return acc + item.quantity! * item.price!;
     }, 0);
     setCost(temp);
   }, [cartList]);
-  // console.log(cartList);
+  if (!user)
+    return <div>You are not authorized to view this page.Login First</div>;
   const content = cartList.map((item, id) => {
-    // console.log(item);
     return (
       <div key={id}>
-        <Card url={item.images[0].url}>
+        <Card url={item.url}>
           <div className="text-center bg-gray-400 mt-2 text-white">
-            COST ${item.price.value}
+            COST ${item.price}
           </div>
           <div className="grid grid-cols-3">
             <Button
               onClick={() =>
                 dispatch(
                   modifyElement({
-                    code: item.articles[0].code,
-                    quantity: item.quantity - 1,
+                    code: item.productCode,
+                    quantity: item.quantity! - 1,
                   })
                 )
               }
@@ -47,8 +46,8 @@ const Cart = () => {
               onClick={() =>
                 dispatch(
                   modifyElement({
-                    code: item.articles[0].code,
-                    quantity: item.quantity + 1,
+                    code: item.productCode,
+                    quantity: item.quantity! + 1,
                   })
                 )
               }
@@ -57,9 +56,7 @@ const Cart = () => {
             </Button>
           </div>
 
-          <Button
-            onClick={() => dispatch(removeElement(item.articles[0].code))}
-          >
+          <Button onClick={() => dispatch(removeElement(item.productCode))}>
             Remove
           </Button>
         </Card>

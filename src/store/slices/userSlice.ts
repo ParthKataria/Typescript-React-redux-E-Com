@@ -3,9 +3,9 @@ import { UserDetails } from "../../TypeDefinations/types";
 const initialState: UserDetails | null = null;
 const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: initialState,
   reducers: {
-    changeUser(state, action) {
+    changeUser(_, action) {
       return action.payload;
     },
   },
