@@ -1,6 +1,6 @@
 import { useFetchImagesQuery } from "../store";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import { RxDotFilled } from "react-icons/rx";
+import { RxDot, RxDotFilled } from "react-icons/rx";
 import { useState } from "react";
 import Skeleton from "./Skeleton";
 import ErrorPage from "../pages/ErrorPage";
@@ -61,7 +61,7 @@ const Slider = ({ category }: { category: string }) => {
                   onClick={() => handleClick(idx)}
                   className="text-2xl cursor-pointer"
                 >
-                  <RxDotFilled />
+                  {idx == index ? <RxDotFilled /> : <RxDot />}
                 </div>
               ))}
             </div>

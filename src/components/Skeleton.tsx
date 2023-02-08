@@ -4,7 +4,7 @@ const Skeleton = ({ times, names }: { times: number; names: string }) => {
     .map((_, i) => {
       return (
         <div key={i} className={names}>
-          <div className="animate-shimmer absolute inset-0 -translate-x-full bg-gradient-to-r from-gray-200 via-white to-gray-200" />
+          <div className="animate-shimmer absolute inset-0 -translate-x-full bg-gradient-to-r from-gray-800 via-white to-gray-200" />
         </div>
       );
     });
