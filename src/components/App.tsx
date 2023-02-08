@@ -8,11 +8,13 @@ import ErrorPage from "../pages/ErrorPage";
 import CardDetails from "./CardDetails";
 import Login from "./Login";
 import Register from "./Register";
+import WishList from "../pages/WishList";
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<NavBar />}>
         <Route index element={<Home />} />
+        <Route path="wishlist" element={<WishList />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="cart" element={<Cart />} />

@@ -61,7 +61,7 @@ const Slider = ({ category }: { category: string }) => {
                   onClick={() => handleClick(idx)}
                   className="text-2xl cursor-pointer"
                 >
-                  {idx == index ? <RxDotFilled /> : <RxDot />}
+                  {idx === index ? <RxDotFilled /> : <RxDot />}
                 </div>
               ))}
             </div>

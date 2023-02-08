@@ -11,7 +11,11 @@ import {
   modifyElement,
   removeElement,
 } from "./slices/CartSlice";
-import { wishlistReducer, addToWishlist } from "./slices/WishlistSlice";
+import {
+  wishlistReducer,
+  addToWishlist,
+  removeFromWishlist,
+} from "./slices/WishlistSlice";
 const store = configureStore({
   reducer: {
     user: userReducer,
@@ -43,5 +47,6 @@ export {
   addToWishlist,
   modifyElement,
   removeElement,
+  removeFromWishlist,
 };
 export type MyState = ReturnType<typeof store.getState>;

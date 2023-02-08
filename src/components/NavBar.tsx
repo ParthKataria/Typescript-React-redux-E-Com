@@ -41,9 +41,9 @@ const NavBar = () => {
           >
             {LoggedIn && (
               <>
-                <button className="md:ml-8 text-xl md:my-0 my-7">
+                <Link className="md:text-xl md:my-0 my-7 ml-5" to="/wishlist">
                   <AiOutlineHeart />
-                </button>
+                </Link>
                 <Profile />
                 <Link className="md:text-xl md:my-0 my-7 mx-5" to="/cart">
                   <AiOutlineShoppingCart />

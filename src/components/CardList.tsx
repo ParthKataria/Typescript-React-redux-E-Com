@@ -1,4 +1,4 @@
-import { useFetchItemsQuery } from "../store";
+import { addToWishlist, useFetchItemsQuery } from "../store";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import Card from "./Card";
@@ -43,6 +43,13 @@ const CardList = ({ category }: CardListProps) => {
     }
     dispatch(addToCart(item));
   };
+  const handleAddToWishlist = (item: Item) => {
+    if (user === null) {
+      alert("Please Login First");
+      return;
+    }
+    dispatch(addToWishlist(item));
+  };
   if (error) {
     console.log(error);
     return <ErrorPage>Error getting details</ErrorPage>;
@@ -62,7 +69,7 @@ const CardList = ({ category }: CardListProps) => {
         {data.map((item: Item, id) => {
           if (id === data.length - 1) {
             return (
-              <Card key={item.code} url={item.url} innerRef={lastElement}>
+              <Card key={id} url={item.url} innerRef={lastElement}>
                 <Link to={`/product/${item.productCode}`} state={item}>
                   <Button>View Product</Button>
                 </Link>
@@ -80,6 +87,9 @@ const CardList = ({ category }: CardListProps) => {
               </Link>
 
               <Button onClick={() => handleAddToCart(item)}>Add to Cart</Button>
+              <Button onClick={() => handleAddToWishlist(item)}>
+                Add to Wishlist
+              </Button>
             </Card>
           );
         })}

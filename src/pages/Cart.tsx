@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { MyState } from "../TypeDefinations/types";
+import { Link } from "react-router-dom";
 const Cart = () => {
   const [cost, setCost] = useState(0);
   const dispatch = useDispatch();
@@ -20,49 +21,61 @@ const Cart = () => {
     setCost(temp);
   }, [cartList]);
   if (!user)
-    return <div>You are not authorized to view this page.Login First</div>;
-  const content = cartList.map((item, id) => {
     return (
-      <div key={id}>
-        <Card url={item.url}>
-          <div className="text-center bg-gray-400 mt-2 text-white">
-            COST ${item.price}
-          </div>
-          <div className="grid grid-cols-3">
-            <Button
-              onClick={() =>
-                dispatch(
-                  modifyElement({
-                    code: item.productCode,
-                    quantity: item.quantity! - 1,
-                  })
-                )
-              }
-            >
-              -
-            </Button>
-            <p className="m-auto">{item.quantity}</p>
-            <Button
-              onClick={() =>
-                dispatch(
-                  modifyElement({
-                    code: item.productCode,
-                    quantity: item.quantity! + 1,
-                  })
-                )
-              }
-            >
-              +
-            </Button>
-          </div>
-
-          <Button onClick={() => dispatch(removeElement(item.productCode))}>
-            Remove
-          </Button>
-        </Card>
+      <div className="w-full text-center">
+        You are not authorized to view this page.Login First
       </div>
     );
-  });
+  const content =
+    cartList.length === 0 ? (
+      <div className="col-span-full text-center">Add Items To Your Cart</div>
+    ) : (
+      cartList.map((item, id) => {
+        return (
+          <div key={id}>
+            <Card url={item.url}>
+              <div className="text-center bg-gray-400 mt-2 text-white">
+                COST ${item.price}
+              </div>
+              <div className="grid grid-cols-3">
+                <Button
+                  onClick={() =>
+                    dispatch(
+                      modifyElement({
+                        code: item.productCode,
+                        quantity: item.quantity! - 1,
+                      })
+                    )
+                  }
+                >
+                  -
+                </Button>
+                <p className="m-auto">{item.quantity}</p>
+                <Button
+                  onClick={() =>
+                    dispatch(
+                      modifyElement({
+                        code: item.productCode,
+                        quantity: item.quantity! + 1,
+                      })
+                    )
+                  }
+                >
+                  +
+                </Button>
+              </div>
+
+              <Button onClick={() => dispatch(removeElement(item.productCode))}>
+                Remove
+              </Button>
+              <Link to={`/product/${item.productCode}`} state={item}>
+                <Button>View Product</Button>
+              </Link>
+            </Card>
+          </div>
+        );
+      })
+    );
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5">

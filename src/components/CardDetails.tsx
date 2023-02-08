@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useFetchItemDetailsQuery } from "../store";
+import { addToWishlist, useFetchItemDetailsQuery } from "../store";
 import { useLocation } from "react-router";
 import { addToCart } from "../store";
 import { useDispatch } from "react-redux";
@@ -54,7 +54,9 @@ const CardDetails = () => {
             <div className="mt-5 text-center text-5xl">{description}</div>
             <div className="mt-5 text-center text-4xl">COST-${price}</div>
             <Button onClick={handleAddToCart}>Add to Cart</Button>
-            <Button>Add to Wishlist</Button>
+            <Button onClick={() => dispatch(addToWishlist(ITEM))}>
+              Add to Wishlist
+            </Button>
           </div>
         </div>
       );
