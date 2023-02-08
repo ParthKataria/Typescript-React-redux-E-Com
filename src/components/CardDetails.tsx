@@ -30,7 +30,7 @@ const CardDetails = () => {
         <div>Ivalid Path</div>
       </ErrorPage>
     );
-  const { url } = ITEM;
+  const { url, price } = ITEM;
   if (isFetching) {
     return (
       <Skeleton
@@ -43,7 +43,7 @@ const CardDetails = () => {
       console.log(error);
       return <ErrorPage>Error fecthing data</ErrorPage>;
     } else {
-      const { name, description, price } = data!;
+      const { name, description } = data!;
       return (
         <div className="m-5 grid grid-cols-3 ">
           <div>
